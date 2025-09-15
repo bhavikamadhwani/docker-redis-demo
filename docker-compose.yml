@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  web:
+    build: .  # Build the image from the Dockerfile in the current directory
+    ports:
+      - "5001:5000"  # Map Windows port 5001 to the container's port 5000
+    depends_on:
+      - redis  # Ensure the 'redis' service starts first
+
+  redis:
+    image: "redis:alpine"  # Use the small, official Redis image
+    # No need to map ports to the host. The 'web' container talks to it internally.
